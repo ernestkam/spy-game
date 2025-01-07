@@ -1,0 +1,41 @@
+:root {
+    --primary-color: #2a2a72;
+    --secondary-color: #009ffd;
+    --background-color: #1a1a2e;
+    --card-color: #ffffff;
+    --text-color: #ffffff;
+    
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 15px;
+    --radius-lg: 25px;
+
+    /* Transitions */
+    --transition-fast: 0.2s;
+    --transition-normal: 0.3s;
+    --transition-slow: 0.8s;
+
+    /* Add RGB values for secondary color */
+    --secondary-color-rgb: 0, 159, 253; /* RGB values for #009ffd */
+
+    /* Safe area variables with fallbacks */
+    --safe-area-inset-top: env(safe-area-inset-top, 0px);
+    --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-area-inset-left: env(safe-area-inset-left, 0px);
+    --safe-area-inset-right: env(safe-area-inset-right, 0px);
+
+    /* Add button variables */
+    --button-height: 44px;
+    --footer-padding-v: var(--spacing-xs);
+    --footer-padding-h: var(--spacing-lg);
+    --mobile-nav-height: 56px; /* Chrome mobile nav height */
+    --footer-height: 80px;
+    --footer-height-with-safe-area: calc(var(--footer-height) + env(safe-area-inset-bottom, 0px));
+} 

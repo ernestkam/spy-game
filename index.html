@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="Who's the Spy - A social deduction game">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>Who's the Spy</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Progress Bar Component -->
+        <div class="progress-bar"></div>
+
+        <!-- Content Wrapper -->
+        <div class="content-wrapper">
+            <!-- Game Sections -->
+            <section id="admin" class="section">
+                <h1>誰是臥底</h1>
+                <div class="version-number">v0.0.2</div>
+                
+                <div class="presets-container">
+                    <button class="presets-toggle" onclick="Components.togglePresets()">
+                        快速設置
+                    </button>
+                    <div class="presets">
+                        <button class="preset-button" data-players="5" data-spies="1">
+                            <span>5 人 (1 臥底)</span>
+                        </button>
+                        <button class="preset-button" data-players="6" data-spies="2">
+                            <span>6 人 (2 臥底)</span>
+                        </button>
+                        <button class="preset-button" data-players="8" data-spies="2">
+                            <span>8 人 (2 臥底)</span>
+                        </button>
+                        <button class="preset-button" data-players="10" data-spies="3">
+                            <span>10 人 (3 臥底)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="setup-container">
+                    <div class="setup-box" id="spySetup">
+                        <!-- Will be populated by Components.createSetupBox() -->
+                    </div>
+                    <div class="setup-box" id="civilianSetup">
+                        <!-- Will be populated by Components.createSetupBox() -->
+                    </div>
+                </div>
+
+                <div class="validation-message"></div>
+            </section>
+
+            <section id="prePlayer" class="section hidden">
+                <h1>準備發牌</h1>
+            </section>
+
+            <section id="player" class="section hidden">
+                <h1>發牌階段</h1>
+                <div id="playerNumber" class="player-label">玩家 1</div>
+                <div id="card" class="card" onclick="Game.revealCard()">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <span>點擊查看你的詞語</span>
+                        </div>
+                        <div class="card-back">
+                            <span id="cardContent"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="buffer" class="section hidden">
+                <h1>所有玩家已查看詞語</h1>
+                <div class="buffer-content">
+                    <div class="buffer-icon">✓</div>
+                    <div class="buffer-text">所有玩家都已經看過自己的詞語</div>
+                    <div class="buffer-instruction">現在可以開始討論，找出誰是臥底！</div>
+                </div>
+            </section>
+
+            <section id="result" class="section hidden">
+                <h1>遊戲結果</h1>
+                <div class="results-container">
+                    <table id="resultsTable"></table>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="game-footer">
+            <div class="button-container">
+                <!-- Setup screen button -->
+                <button onclick="Game.start()" id="startButton" class="button-primary footer-button">開始遊戲</button>
+                
+                <!-- Pre-player screen button -->
+                <button onclick="Game.startPlayerTurns()" id="startDealingButton" class="button-primary footer-button hidden">開始發牌</button>
+                
+                <!-- Player screen button -->
+                <button onclick="Game.nextPlayer()" id="nextButton" class="button-primary footer-button hidden">我已經記住了！</button>
+                
+                <!-- Buffer screen button -->
+                <button onclick="Game.showResults()" id="showResultsButton" class="button-primary footer-button hidden">查看結果</button>
+                
+                <!-- Results screen button -->
+                <button onclick="Game.startOver()" id="startOverButton" class="button-primary footer-button hidden">重新開始</button>
+            </div>
+        </footer>
+    </div>
+
+    <div class="pass-overlay">
+        <div class="pass-message">請將設備交給下一位玩家</div>
+        <div class="pass-icon">↻</div>
+    </div>
+
+    <!-- Templates -->
+    <template id="cardTemplate">
+        <div class="card-inner">
+            <div class="card-front">
+                <span>點擊查看你的詞語</span>
+            </div>
+            <div class="card-back">
+                <span id="cardContent"></span>
+            </div>
+        </div>
+    </template>
+
+    <template id="setupBoxTemplate">
+        <h2></h2>
+        <div class="input-group">
+            <label></label>
+            <input type="number" min="0">
+        </div>
+        <div class="input-group">
+            <label></label>
+            <input type="text">
+        </div>
+    </template>
+
+    <!-- Scripts -->
+    <script src="js/viewport.js"></script>
+    <script src="js/templates.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
